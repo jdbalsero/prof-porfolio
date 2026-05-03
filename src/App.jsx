@@ -8,9 +8,14 @@ import Contact from './components/Contact'
 
 export default function App() {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen">
+    <div className="app-shell">
+      <div className="app-glow app-glow-one" />
+      <div className="app-glow app-glow-two" />
+      <div className="app-grid" />
+
       <Nav />
-      <main>
+
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <About />
         <Experience />

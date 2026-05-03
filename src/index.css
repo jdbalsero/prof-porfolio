@@ -5,6 +5,12 @@
 :root {
   --accent: rgb(255 85 85);
   --accent-rgb: 255, 85, 85;
+  --bg: #080808;
+  --panel: rgba(16, 16, 16, 0.82);
+  --panel-strong: rgba(14, 14, 14, 0.94);
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f5f5f5;
+  --muted: #9ca3af;
 }
 
 * {
@@ -15,14 +21,22 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #f5f5f5;
+  background:
+    radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.12), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(87, 111, 255, 0.1), transparent 24%),
+    linear-gradient(180deg, #080808 0%, #0b0b0c 45%, #070707 100%);
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+a {
+  color: inherit;
 }
 
 .font-display {
@@ -50,4 +64,94 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-glow {
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.22;
+}
+
+.app-glow-one {
+  top: 8rem;
+  left: -6rem;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(var(--accent-rgb), 0.38);
+}
+
+.app-glow-two {
+  right: -5rem;
+  top: 30rem;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(78, 97, 255, 0.18);
+}
+
+.app-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.42), transparent 88%);
+}
+
+.section-wrap {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 4.4rem);
+  line-height: 0.98;
+  color: #fff;
+}
+
+.section-copy {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.24);
+}
+
+.panel-strong {
+  background: var(--panel-strong);
+}
+
+.accent-ring {
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.18),
+    0 20px 70px rgba(var(--accent-rgb), 0.1);
+}
+
+.soft-line {
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }

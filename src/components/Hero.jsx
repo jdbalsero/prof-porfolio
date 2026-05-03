@@ -6,17 +6,11 @@ const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.11 } },
 }
+
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 }
-
-const stats = [
-  { value: '~10', label: 'Clients Served' },
-  { value: '4+', label: 'Years in Data & AI' },
-  { value: '1', label: 'SPE Publication' },
-  { value: '6.7 / 7', label: 'Master GPA' },
-]
 
 export default function Hero() {
   return (
@@ -24,16 +18,16 @@ export default function Hero() {
       id="hero"
       style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', textAlign: 'center' }}
     >
-      {/* Background image */}
       <div
-        style={{ position: 'absolute', inset: 0, backgroundImage: "url('/professional-porfolio/assets/hero-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+        style={{ position: 'absolute', inset: '-7%', backgroundImage: "url('/professional-porfolio/assets/hero-bg.jpg')", backgroundSize: 'cover', backgroundPosition: '61% center', backgroundRepeat: 'no-repeat', transform: 'scale(1.15)', filter: 'brightness(0.8) contrast(1.03) saturate(0.95)' }}
       />
-      {/* Dark overlay */}
       <div
-        style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.70) 50%, rgba(10,10,10,0.95) 100%)' }}
+        style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,8,8,0.48) 0%, rgba(10,10,10,0.34) 45%, rgba(10,10,10,0.74) 100%)' }}
+      />
+      <div
+        style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.08), transparent 42%), linear-gradient(to right, rgba(10,10,10,0.05), rgba(10,10,10,0.12))' }}
       />
 
-      {/* Content */}
       <div style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: '0 auto', padding: '8rem clamp(32px, 6vw, 80px) 6rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <motion.div
           variants={stagger}
@@ -41,51 +35,48 @@ export default function Hero() {
           animate="visible"
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
         >
-          {/* Status badge */}
           <motion.div variants={fadeUp} style={{ marginBottom: '2.5rem' }}>
             <span
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
                 fontSize: '0.7rem', padding: '0.5rem 1.25rem', borderRadius: '999px',
-                border: '1px solid rgba(13,148,136,0.6)', color: '#0D9488',
+                border: '1px solid rgba(var(--accent-rgb), 0.6)', color: 'var(--accent)',
                 background: 'rgba(10,10,10,0.6)', backdropFilter: 'blur(8px)',
                 letterSpacing: '0.18em', textTransform: 'uppercase',
               }}
             >
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0D9488', animation: 'pulse 2s infinite' }} />
-              Open to work · Sydney, Australia
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite' }} />
+              {personal.availability} | {personal.location}
             </span>
           </motion.div>
 
-          {/* Photo */}
           <motion.div variants={fadeUp} style={{ marginBottom: '2rem', position: 'relative' }}>
             <div
               style={{
                 width: '9rem', height: '9rem', borderRadius: '50%', overflow: 'hidden', margin: '0 auto',
-                border: '2px solid rgba(13,148,136,0.5)',
-                boxShadow: '0 0 0 6px rgba(13,148,136,0.08), 0 0 60px rgba(13,148,136,0.2)',
+                border: '2px solid rgba(var(--accent-rgb), 0.5)',
+                boxShadow: '0 0 0 6px rgba(var(--accent-rgb), 0.08), 0 0 60px rgba(var(--accent-rgb), 0.2)',
               }}
             >
               <img
-                src="/professional-porfolio/assets/camilo.jpg"
-                alt="Camilo Uribe Guerra"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transform: 'scale(1.1)' }}
+                src={personal.photoUrl}
+                alt={personal.name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transform: 'scale(1.08)' }}
               />
             </div>
             <motion.div
-              style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid rgba(13,148,136,0.25)', pointerEvents: 'none' }}
+              style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid rgba(var(--accent-rgb), 0.25)', pointerEvents: 'none' }}
               animate={{ scale: [1, 1.25, 1], opacity: [0.5, 0, 0.5] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             />
           </motion.div>
 
-          {/* Name */}
           <motion.h1
             variants={fadeUp}
             className="font-display"
             style={{ fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '1.25rem', fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', textAlign: 'center' }}
           >
-            Camilo <span style={{ color: '#0D9488' }}>Uribe</span> Guerra
+            {personal.heroNameLead} <span style={{ color: 'var(--accent)' }}>{personal.heroNameAccent}</span> {personal.heroNameTail}
           </motion.h1>
 
           <motion.p variants={fadeUp} style={{ color: '#d1d5db', fontSize: '1.2rem', fontWeight: 300, marginBottom: '0.6rem', letterSpacing: '0.01em', textAlign: 'center' }}>
@@ -95,25 +86,21 @@ export default function Hero() {
             {personal.subtitle}
           </motion.p>
 
-          {/* Bio */}
           <motion.p
             variants={fadeUp}
-            style={{ color: '#9ca3af', fontSize: '1rem', lineHeight: 1.9, marginBottom: '2.5rem', maxWidth: '520px', textAlign: 'center' }}
+            style={{ color: '#9ca3af', fontSize: '1rem', lineHeight: 1.9, marginBottom: '2.5rem', maxWidth: '540px', textAlign: 'center' }}
           >
-            Petroleum engineer turned data scientist — bringing rare domain depth
-            to every pipeline, model, and AI system I build across energy,
-            sustainability, and enterprise software.
+            {personal.heroSummary}
           </motion.p>
 
-          {/* CTAs */}
           <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem', marginBottom: '3.5rem' }}>
-            <Link to="projects" smooth duration={700} offset={-80}>
+            <Link to="experience" smooth duration={700} offset={-80}>
               <button
-                style={{ padding: '0.75rem 2rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: '#0D9488', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s, transform 0.2s' }}
+                style={{ padding: '0.75rem 2rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600, color: '#fff', background: 'var(--accent)', border: 'none', cursor: 'pointer', transition: 'opacity 0.2s, transform 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'scale(1.03)' }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'scale(1)' }}
               >
-                View My Work
+                Explore Experience
               </button>
             </Link>
             <a
@@ -126,41 +113,44 @@ export default function Hero() {
               Download CV
             </a>
             <Link to="contact" smooth duration={700} offset={-80}>
-              <button style={{ padding: '0.75rem 2rem', borderRadius: '999px', fontSize: '0.875rem', color: '#6b7280', background: 'transparent', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
+              <button
+                style={{ padding: '0.75rem 2rem', borderRadius: '999px', fontSize: '0.875rem', color: '#6b7280', background: 'transparent', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#d1d5db'}
                 onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
               >
-                Get in touch →
+                {'Get in touch ->'}
               </button>
             </Link>
           </motion.div>
 
-          {/* Stats bar */}
           <motion.div
             variants={fadeUp}
             style={{
-              width: '100%', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-              borderRadius: '1rem', overflow: 'hidden',
-              background: 'rgba(10,10,10,0.55)', border: '1px solid rgba(255,255,255,0.07)',
+              width: '100%',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+              borderRadius: '1rem',
+              overflow: 'hidden',
+              background: 'rgba(10,10,10,0.55)',
+              border: '1px solid rgba(255,255,255,0.07)',
               backdropFilter: 'blur(12px)',
             }}
           >
-            {stats.map((s, i) => (
+            {personal.stats.map((stat, index) => (
               <div
-                key={s.label}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1.5rem 1rem', borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
+                key={stat.label}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1.5rem 1rem', borderRight: index < personal.stats.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
               >
-                <p className="font-display" style={{ color: '#0D9488', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                  {s.value}
+                <p className="font-display" style={{ color: 'var(--accent)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
+                  {stat.value}
                 </p>
-                <p style={{ color: '#6b7280', fontSize: '0.7rem', textAlign: 'center', lineHeight: 1.3 }}>{s.label}</p>
+                <p style={{ color: '#6b7280', fontSize: '0.7rem', textAlign: 'center', lineHeight: 1.3 }}>{stat.label}</p>
               </div>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
       <motion.div
         style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
         initial={{ opacity: 0 }}
@@ -169,7 +159,7 @@ export default function Hero() {
       >
         <span style={{ color: '#4b5563', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Scroll</span>
         <motion.div
-          style={{ width: '1px', height: '2rem', background: 'linear-gradient(to bottom, #0D9488, transparent)' }}
+          style={{ width: '1px', height: '2rem', background: 'linear-gradient(to bottom, var(--accent), transparent)' }}
           animate={{ opacity: [0.7, 0.1, 0.7] }}
           transition={{ duration: 1.8, repeat: Infinity }}
         />

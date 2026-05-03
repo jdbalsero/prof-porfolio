@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-scroll'
+import { personal } from '../data/portfolio'
 
 const navLinks = [
   { label: 'About', to: 'about' },
@@ -32,13 +33,12 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link to="hero" smooth duration={600} className="cursor-pointer">
           <span className="font-display text-xl font-bold tracking-tight text-white">
-            CUG<span style={{ color: '#0D9488' }}>.</span>
+            {personal.brand}<span style={{ color: 'var(--accent)' }}>.</span>
           </span>
         </Link>
 
-        {/* Desktop */}
         <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map(link => (
             <li key={link.to}>
               <Link
                 to={link.to}
@@ -55,7 +55,6 @@ export default function Nav() {
           ))}
         </ul>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-1"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -67,7 +66,6 @@ export default function Nav() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -77,7 +75,7 @@ export default function Nav() {
             className="md:hidden bg-black/95 border-b border-white/5"
           >
             <ul className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <li key={link.to}>
                   <Link
                     to={link.to}

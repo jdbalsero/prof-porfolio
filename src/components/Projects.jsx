@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion'
 import FadeIn from './FadeIn'
+import { projects } from '../data/portfolio'
 
 const wrap = { maxWidth: '1100px', margin: '0 auto', padding: '0 clamp(32px, 5vw, 80px)' }
 
-const projects = [
-  { title: 'Airflow + dbt Medallion Pipeline', category: 'Data Engineering', description: 'End-to-end pipeline with bronze/silver/gold layers, SCD Type 2 snapshots, star schema models and business marts for Airbnb and Census revenue + demographic analysis.', tech: ['Apache Airflow', 'dbt', 'Snowflake', 'PostgreSQL', 'Python'], image: '/professional-porfolio/assets/medallion.png', accent: '#0D9488', wide: true },
-  { title: 'RAG Resume Ranking & Supplier Evaluation', category: 'AI / NLP', description: 'AWS Bedrock retrieval workflow using MongoDB Atlas as vector store. Resume ranking and supplier evaluation with LLM context injection.', tech: ['AWS Bedrock', 'MongoDB Atlas', 'LlamaIndex', 'Python'], image: '/professional-porfolio/assets/rag-workflow.png', accent: '#6366F1', wide: false },
-  { title: 'RL GHG Compliance Consultant', category: 'AI / Sustainability', description: 'Reinforcement learning assistant for Australian GHG compliance. Led delivery and business analysis. Improved groundedness and user satisfaction.', tech: ['Python', 'Reinforcement Learning', 'LLM'], image: null, accent: '#10B981', wide: false },
-  { title: 'LLM Prompt Injection Security Framework', category: 'AI Security', description: 'Modular framework to test prompt injection attacks, benchmark attack success rates and evaluate mitigation strategies across LLM and lightweight agent workflows.', tech: ['Python', 'LLMs', 'Agent Frameworks'], image: null, accent: '#F59E0B', wide: false },
-  { title: 'Automation of GHG Estimates — SPE Publication', category: 'Research / Publication', description: 'Authored and published SPE paper on automating Greenhouse Gas Emissions estimates for natural gas production in the Appalachian Basin, applying EPA 40 CFR Part 98. Presented at SPE Energy Transition Symposium, Houston 2024. DOI: 10.2118/221400-MS.', tech: ['Python', 'GHG Protocols', 'EPA 40 CFR Part 98', 'PostgreSQL'], image: null, accent: '#EC4899', wide: true, link: 'https://onepetro.org/speets/proceedings-abstract/24ETS/24ETS/D012S005R002/548349', linkLabel: 'View on OnePetro ↗' },
-]
-
-const categoryIcon = { 'AI Security': '🔐', 'Research / Publication': '📄', 'AI / Sustainability': '🌿' }
+const categoryIcon = {
+  'AI / Sustainability': 'AI',
+  'Data Engineering / AI Agents': 'DE',
+  'Machine Learning / FinTech': 'ML',
+  'Big Data / ML': 'BD',
+  'Data Engineering': 'ETL',
+}
 
 function ProjectCard({ title, category, description, tech, image, accent, wide, link, linkLabel }) {
   return (
@@ -20,36 +19,48 @@ function ProjectCard({ title, category, description, tech, image, accent, wide, 
         whileHover={{ y: -5 }}
         transition={{ duration: 0.2 }}
         style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '1.25rem', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%', gridColumn: wide ? 'span 2' : 'span 1', transition: 'border-color 0.2s' }}
-        onMouseEnter={e => e.currentTarget.style.borderColor = `${accent}35`}
-        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'}
+        onMouseEnter={event => event.currentTarget.style.borderColor = `${accent}35`}
+        onMouseLeave={event => event.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'}
       >
         {image ? (
-          <div style={{ position: 'relative', overflow: 'hidden', height: '220px' }}>
-            <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', transition: 'transform 0.5s' }} onMouseEnter={e => e.target.style.transform = 'scale(1.03)'} onMouseLeave={e => e.target.style.transform = 'scale(1)'} />
+          <div style={{ position: 'relative', overflow: 'hidden', height: '220px', background: '#0a0a0a' }}>
+            <img
+              src={image}
+              alt={title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', transition: 'transform 0.5s', transform: 'scale(1.12)' }}
+              onMouseEnter={event => event.target.style.transform = 'scale(1.16)'}
+              onMouseLeave={event => event.target.style.transform = 'scale(1.12)'}
+            />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, #111111 100%)' }} />
           </div>
         ) : (
           <div style={{ height: '7rem', background: `${accent}07`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(${accent} 1px, transparent 1px)`, backgroundSize: '20px 20px', opacity: 0.03 }} />
-            <span style={{ fontSize: '2.5rem', opacity: 0.15 }}>{categoryIcon[category] || '⚡'}</span>
+            <span style={{ fontSize: '1.2rem', opacity: 0.25, fontWeight: 700, letterSpacing: '0.1em' }}>{categoryIcon[category] || 'PR'}</span>
           </div>
         )}
         <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
             <span style={{ fontSize: '0.72rem', padding: '0.3rem 0.85rem', borderRadius: '999px', background: `${accent}12`, color: accent, border: `1px solid ${accent}22` }}>{category}</span>
             {link ? (
-              <a href={link} target="_blank" rel="noreferrer" style={{ color: accent, fontSize: '0.75rem', textDecoration: 'none', fontWeight: 500, opacity: 0.8, transition: 'opacity 0.2s' }}
-                onMouseEnter={e => e.currentTarget.style.opacity = '1'}
-                onMouseLeave={e => e.currentTarget.style.opacity = '0.8'}
-              >{linkLabel || '↗'}</a>
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: accent, fontSize: '0.75rem', textDecoration: 'none', fontWeight: 500, opacity: 0.8, transition: 'opacity 0.2s' }}
+                onMouseEnter={event => event.currentTarget.style.opacity = '1'}
+                onMouseLeave={event => event.currentTarget.style.opacity = '0.8'}
+              >
+                {linkLabel || 'View ->'}
+              </a>
             ) : (
-              <span style={{ color: '#374151', fontSize: '1rem' }}>↗</span>
+              <span style={{ color: '#374151', fontSize: '1rem' }}>{'->'}</span>
             )}
           </div>
           <p className="font-display" style={{ color: '#fff', fontWeight: 700, fontSize: '1.15rem', lineHeight: 1.3, marginBottom: '0.875rem' }}>{title}</p>
           <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.8, flex: 1, marginBottom: '1.5rem' }}>{description}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {tech.map(t => <span key={t} style={{ fontSize: '0.72rem', padding: '0.3rem 0.7rem', borderRadius: '0.3rem', background: '#1a1a1a', color: '#555' }}>{t}</span>)}
+            {tech.map(item => <span key={item} style={{ fontSize: '0.72rem', padding: '0.3rem 0.7rem', borderRadius: '0.3rem', background: '#1a1a1a', color: '#555' }}>{item}</span>)}
           </div>
         </div>
       </motion.div>
@@ -62,13 +73,28 @@ export default function Projects() {
     <section id="projects" style={{ padding: '9rem 0', position: 'relative' }}>
       <div style={wrap}>
         <FadeIn>
-          <p style={{ color: '#0D9488', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', textAlign: 'center', marginBottom: '1.25rem' }}>03 — Projects</p>
+          <p style={{ color: 'var(--accent)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', textAlign: 'center', marginBottom: '1.25rem' }}>03 - Projects</p>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <h2 className="font-display" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.8rem)', fontWeight: 800, color: '#fff', textAlign: 'center', marginBottom: '3.5rem' }}>Selected Work</h2>
+          <h2 className="font-display" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.8rem)', fontWeight: 800, color: '#fff', textAlign: 'center', marginBottom: '3.5rem' }}>
+            Selected Work
+          </h2>
         </FadeIn>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
-          {projects.map(p => <ProjectCard key={p.title} {...p} />)}
+          {projects.map(project => (
+            <ProjectCard
+              key={project.title}
+              title={project.title}
+              category={project.category}
+              description={project.description}
+              tech={project.tech}
+              image={project.image}
+              accent={project.color}
+              wide={project.wide}
+              link={project.link}
+              linkLabel={project.linkLabel}
+            />
+          ))}
         </div>
       </div>
     </section>

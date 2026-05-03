@@ -2,6 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+:root {
+  --accent: rgb(255 85 85);
+  --accent-rgb: 255, 85, 85;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -25,7 +30,7 @@ body {
 }
 
 ::selection {
-  background: #0D9488;
+  background: var(--accent);
   color: white;
 }
 
@@ -38,7 +43,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0D9488;
+  background: var(--accent);
   border-radius: 2px;
 }
 

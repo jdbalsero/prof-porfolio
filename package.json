@@ -1,9 +1,9 @@
 {
-  "name": "professional-porfolio",
+  "name": "prof-porfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jdbalsero.github.io/professional-porfolio",
+  "homepage": "https://jdbalsero.github.io/prof-porfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

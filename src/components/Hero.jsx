@@ -26,7 +26,7 @@ export default function Hero() {
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: "url('/professional-porfolio/assets/hero-bg.jpg')",
+              backgroundImage: "url('/prof-porfolio/assets/hero-bg.jpg')",
               backgroundSize: 'cover',
               backgroundPosition: '62% center',
               opacity: 0.22,

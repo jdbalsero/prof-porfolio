@@ -21,7 +21,7 @@ export default function About() {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  backgroundImage: "url('/professional-porfolio/assets/globe-bg.png')",
+                  backgroundImage: "url('/prof-porfolio/assets/globe-bg.png')",
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   opacity: 0.18,

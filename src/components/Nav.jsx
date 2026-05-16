@@ -5,6 +5,7 @@ import { personal } from '../data/portfolio'
 
 const navLinks = [
   { label: 'Profile', to: 'about' },
+  { label: 'Education', to: 'education' },
   { label: 'Experience', to: 'experience' },
   { label: 'Projects', to: 'projects' },
   { label: 'Stack', to: 'skills' },

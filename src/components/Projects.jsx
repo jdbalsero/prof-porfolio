@@ -38,7 +38,7 @@ export default function Projects() {
               </h2>
             </div>
             <p className="section-copy" style={{ maxWidth: '23rem' }}>
-              This branch keeps the same work history and project content, but presents it in a more editorial format with stronger hierarchy and a more product-style reading flow.
+              These projects show how I apply data engineering, machine learning, and AI tooling to real delivery problems, from automation workflows to predictive platforms.
             </p>
           </div>
         </FadeIn>

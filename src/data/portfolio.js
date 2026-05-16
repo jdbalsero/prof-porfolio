@@ -249,9 +249,9 @@ export const projects = [
 export const skills = {
   'Data & AI': ['Python', 'Machine Learning', 'scikit-learn', 'PyTorch', 'LangChain', 'LangGraph', 'AI Automation'],
   'Data Engineering': ['SQL', 'ETL / ELT', 'DLT', 'dbt', 'Snowflake', 'SAP HANA', 'PostgreSQL', 'MySQL', 'Oracle SQL', 'MongoDB'],
-  'BI & Analytics': ['Power BI', 'Data Analysis', 'Data Visualization', 'Business Intelligence', 'Dashboard Design'],
-  'Software Engineering': ['ReactJS', 'Material UI', 'Node.js', 'ExpressJS', 'NestJS', 'Java', 'Spring Boot', 'JUnit', 'JWT'],
   'Cloud & DevOps': ['Docker', 'Jenkins', 'Kubernetes', 'Oracle Cloud Infrastructure', 'AWS S3', 'AWS RDS', 'DigitalOcean', 'HashiCorp Vault'],
+  'Software Engineering': ['ReactJS', 'Material UI', 'Node.js', 'ExpressJS', 'NestJS', 'Java', 'Spring Boot', 'JUnit', 'JWT'],
+  'BI & Analytics': ['Power BI', 'Data Analysis', 'Data Visualization', 'Business Intelligence', 'Dashboard Design'],
 }
 
 export const publication = {

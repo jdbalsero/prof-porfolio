@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import FadeIn from './FadeIn'
+import TechBadge from './TechBadge'
 import { experience } from '../data/portfolio'
 
 const companyInfo = {
@@ -45,7 +47,34 @@ function CompanyLogo({ name, color }) {
   )
 }
 
+function ToggleIcon({ open }) {
+  return (
+    <motion.span
+      animate={{ rotate: open ? 45 : 0 }}
+      transition={{ duration: 0.2 }}
+      aria-hidden="true"
+      style={{
+        width: '2.3rem',
+        height: '2.3rem',
+        borderRadius: '999px',
+        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'rgba(255,255,255,0.03)',
+        color: '#cfd5de',
+        display: 'grid',
+        placeItems: 'center',
+        fontSize: '1.1rem',
+        lineHeight: 1,
+        flexShrink: 0,
+      }}
+    >
+      +
+    </motion.span>
+  )
+}
+
 export default function Experience() {
+  const [openIndex, setOpenIndex] = useState(0)
+
   return (
     <section id="experience" style={{ padding: '5rem 0' }}>
       <div className="section-wrap">
@@ -84,67 +113,104 @@ export default function Experience() {
               {experience.map((entry, index) => {
                 const info = companyInfo[entry.company]
                 const color = info?.color || 'var(--accent)'
+                const isOpen = index === openIndex
 
                 return (
                   <FadeIn key={`${entry.company}-${entry.role}`} delay={index * 0.06}>
                     <div style={{ position: 'relative' }}>
                       <div style={{ position: 'absolute', left: '-1.2rem', top: '1.75rem', width: '0.9rem', height: '0.9rem', borderRadius: '999px', background: color, boxShadow: `0 0 0 6px ${color}18` }} />
 
-                      <div className="panel" style={{ padding: '1.6rem' }}>
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4" style={{ marginBottom: '1.3rem' }}>
-                          <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                            <CompanyLogo name={entry.company} color={color} />
-                            <div>
-                              <p className="font-display" style={{ color: '#fff', fontSize: '1.35rem', lineHeight: 1.05, marginBottom: '0.3rem' }}>
-                                {entry.role}
-                              </p>
-                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem', alignItems: 'center' }}>
-                                {info?.url ? (
-                                  <a href={info.url} target="_blank" rel="noreferrer" style={{ color, textDecoration: 'none', fontSize: '0.86rem' }}>
-                                    {entry.company}
-                                  </a>
-                                ) : (
-                                  <span style={{ color, fontSize: '0.86rem' }}>{entry.company}</span>
-                                )}
-                                <span style={{ color: '#6b7280', fontSize: '0.84rem' }}>{entry.location}</span>
+                      <motion.article
+                        layout
+                        className="panel"
+                        style={{
+                          overflow: 'hidden',
+                          borderColor: isOpen ? `${color}33` : 'rgba(255,255,255,0.06)',
+                          boxShadow: isOpen ? `0 25px 80px rgba(0,0,0,0.28), 0 0 0 1px ${color}18` : '0 25px 80px rgba(0,0,0,0.24)',
+                        }}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setOpenIndex(current => (current === index ? -1 : index))}
+                          aria-expanded={isOpen}
+                          style={{
+                            width: '100%',
+                            textAlign: 'left',
+                            background: 'transparent',
+                            border: 'none',
+                            color: 'inherit',
+                            padding: '1.5rem 1.6rem',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                              <CompanyLogo name={entry.company} color={color} />
+                              <div>
+                                <p className="font-display" style={{ color: '#fff', fontSize: '1.35rem', lineHeight: 1.05, marginBottom: '0.3rem' }}>
+                                  {entry.role}
+                                </p>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem', alignItems: 'center' }}>
+                                  {info?.url ? (
+                                    <a
+                                      href={info.url}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      onClick={event => event.stopPropagation()}
+                                      style={{ color, textDecoration: 'none', fontSize: '0.86rem' }}
+                                    >
+                                      {entry.company}
+                                    </a>
+                                  ) : (
+                                    <span style={{ color, fontSize: '0.86rem' }}>{entry.company}</span>
+                                  )}
+                                  <span style={{ color: '#6b7280', fontSize: '0.84rem' }}>{entry.location}</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <span style={{ alignSelf: 'flex-start', padding: '0.45rem 0.9rem', borderRadius: '999px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: '#d1d5db', fontSize: '0.78rem', whiteSpace: 'nowrap' }}>
-                            {entry.period}
-                          </span>
-                        </div>
-
-                        <div className="grid lg:grid-cols-[1fr_auto] gap-5 items-start">
-                          <ul style={{ listStyle: 'none', display: 'grid', gap: '0.7rem' }}>
-                            {entry.bullets.map(bullet => (
-                              <li key={bullet} style={{ display: 'flex', gap: '0.7rem', color: '#c8cfd8', lineHeight: 1.7, fontSize: '0.92rem' }}>
-                                <span style={{ color, marginTop: '0.15rem' }}>+</span>
-                                <span>{bullet}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem', maxWidth: '16rem' }}>
-                            {entry.tech.map(item => (
-                              <span
-                                key={item}
-                                style={{
-                                  padding: '0.4rem 0.75rem',
-                                  borderRadius: '999px',
-                                  background: 'rgba(255,255,255,0.03)',
-                                  border: '1px solid rgba(255,255,255,0.06)',
-                                  color: '#9ca3af',
-                                  fontSize: '0.76rem',
-                                }}
-                              >
-                                {item}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                              <span style={{ alignSelf: 'flex-start', padding: '0.45rem 0.9rem', borderRadius: '999px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: '#d1d5db', fontSize: '0.78rem', whiteSpace: 'nowrap' }}>
+                                {entry.period}
                               </span>
-                            ))}
+                              <ToggleIcon open={isOpen} />
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              key="content"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.28, ease: 'easeInOut' }}
+                              style={{ overflow: 'hidden' }}
+                            >
+                              <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)' }} />
+                              <div style={{ padding: '1.5rem 1.6rem 1.7rem' }}>
+                                <div className="grid lg:grid-cols-[1fr_17rem] gap-5 items-start">
+                                  <ul style={{ listStyle: 'none', display: 'grid', gap: '0.95rem' }}>
+                                    {entry.bullets.map(bullet => (
+                                      <li key={bullet} style={{ display: 'flex', gap: '0.85rem', color: '#d4dae3', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                                        <span style={{ color, marginTop: '0.1rem', fontSize: '1rem' }}>›</span>
+                                        <span>{bullet}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+
+                                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '0.65rem' }}>
+                                    {entry.tech.map(item => (
+                                      <TechBadge key={item} label={item} />
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.article>
                     </div>
                   </FadeIn>
                 )

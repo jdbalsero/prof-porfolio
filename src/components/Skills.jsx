@@ -1,12 +1,13 @@
 import FadeIn from './FadeIn'
+import TechBadge from './TechBadge'
 import { skills } from '../data/portfolio'
 
 const groupColors = {
   'Data & AI': '#FF5555',
   'Data Engineering': '#8B5CF6',
-  'BI & Analytics': '#10B981',
-  'Software Engineering': '#F59E0B',
   'Cloud & DevOps': '#3B82F6',
+  'Software Engineering': '#F59E0B',
+  'BI & Analytics': '#10B981',
 }
 
 const stackNotes = [
@@ -58,19 +59,7 @@ export default function Skills() {
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
                       {items.map(item => (
-                        <span
-                          key={item}
-                          style={{
-                            padding: '0.42rem 0.78rem',
-                            borderRadius: '999px',
-                            background: `${color}10`,
-                            border: `1px solid ${color}22`,
-                            color: '#d7dce5',
-                            fontSize: '0.78rem',
-                          }}
-                        >
-                          {item}
-                        </span>
+                        <TechBadge key={item} label={item} accent={color} />
                       ))}
                     </div>
                   </div>

@@ -27,7 +27,7 @@ const portfolioData = {
     heroNameLead: 'Juan Diego',
     heroNameAccent: 'Balsero',
     heroNameTail: 'Leon',
-    title: t('Data Engineer, AI Builder & Software Consultant', 'Ingeniero de Datos, Constructor de IA y Consultor de Software'),
+    title: t('Data Engineer, AI Developer & Software Consultant', 'Ingeniero de Datos, Desarrollador de IA y Consultor de Software'),
     subtitle: t('Data Science, Analytics and Automation', 'Ciencia de Datos, Analítica y Automatización'),
     email: 'juandibl00@hotmail.com',
     phone: '0493939946',
@@ -75,7 +75,7 @@ const portfolioData = {
       period: '2017 - 2022',
       detail: t(
         'Graduated with academic honors. Built a strong foundation in software engineering, systems design, and applied technical problem solving.',
-        'Graduado con honores académicos. Construí una base sólida en ingeniería de software, diseño de sistemas y resolución aplicada de problemas técnicos.',
+        'Graduado con honores. Construí una base sólida en ingeniería de software, diseño de sistemas y resolución aplicada de problemas técnicos.',
       ),
       badge: t('Academic Honors', 'Honores Académicos'),
       color: '#10B981',
@@ -98,7 +98,7 @@ const portfolioData = {
       where: 'Coally SAS',
       desc: t(
         'Built Node.js APIs, document workflows, and third-party integrations including OpenAI, SendGrid, and Twilio.',
-        'Desarrollé APIs en Node.js, flujos documentales e integraciones con terceros como OpenAI, SendGrid y Twilio.',
+        'Desarrollo de APIs en Node.js, flujos documentales e integraciones con terceros como OpenAI, SendGrid y Twilio.',
       ),
     },
     {
@@ -108,7 +108,7 @@ const portfolioData = {
       where: 'Informa Colombia',
       desc: t(
         'Maintained CI/CD flows with Docker and Jenkins, administered Kubernetes clusters, and planned deployment strategies.',
-        'Mantuve flujos de CI/CD con Docker y Jenkins, administré clústeres de Kubernetes y planifiqué estrategias de despliegue.',
+        'Mantenimiento de flujos CI/CD con Docker y Jenkins, administración de clúster de Kubernetes y planificación de estrategias de despliegue.',
       ),
     },
     {
@@ -118,7 +118,7 @@ const portfolioData = {
       where: 'Assisttu',
       desc: t(
         'Delivered secure React and Express features backed by PostgreSQL, MongoDB, AWS services, and cloud infrastructure.',
-        'Entregué funcionalidades seguras en React y Express respaldadas por PostgreSQL, MongoDB, servicios AWS e infraestructura en la nube.',
+        'Entrega de funcionalidades seguras en React y Express respaldadas por PostgreSQL, MongoDB, servicios AWS e infraestructura en la nube.',
       ),
     },
     {
@@ -128,7 +128,7 @@ const portfolioData = {
       where: 'NFQ',
       desc: t(
         'Built Java customizations, JUnit tests, and Power BI reporting for Calypso-based client implementations.',
-        'Desarrollé personalizaciones en Java, pruebas con JUnit y reportes en Power BI para implementaciones de clientes basadas en Calypso.',
+        'Desarrollo de personalizaciones en Java, pruebas con JUnit y reportes en Power BI para implementaciones de clientes basadas en Calypso.',
       ),
     },
     {
@@ -138,7 +138,7 @@ const portfolioData = {
       where: 'Synogize',
       desc: t(
         'Created agentic AI workflows, DLT ingestion, dbt transformations, and a Snowflake medallion MVP.',
-        'Creé flujos de IA agentica, ingestión con DLT, transformaciones con dbt y un MVP medallion en Snowflake.',
+        'Creación de flujos de Agentic AI, ingestión con DLT, transformaciones con dbt y un MVP medallion en Snowflake.',
       ),
     },
     {
@@ -170,10 +170,10 @@ const portfolioData = {
       location: t('Sydney, AU', 'Sídney, AU'),
       period: t('Dec 2025 - Present', 'Dic 2025 - Actualidad'),
       bullets: [
-        t('Debugged and modified SAP HANA SQL procedures for a TMCA vehicle demand planning and order allocation tool.', 'Depuré y modifiqué procedimientos SQL de SAP HANA para una herramienta de planeación de demanda y asignación de órdenes de vehículos para TMCA.'),
-        t('Implemented automated data ingestion pipelines and data migration into the TMCA business warehouse.', 'Implementé pipelines automatizados de ingestión de datos y migración hacia el data warehouse de negocio de TMCA.'),
+        t('Debugged and modified SAP HANA SQL procedures for a TMCA vehicle demand planning and order allocation tool.', 'Debugging de procedimientos SQL de SAP HANA para una herramienta de planeación de demanda y asignación de órdenes de vehículos para TMCA.'),
+        t('Implemented automated data ingestion pipelines and data migration into the TMCA business warehouse.', 'Implementación de pipelines automatizados de ingestión de datos y migración hacia el data warehouse de negocio de TMCA.'),
         t('Performed SIT testing across the master data platform, validating outputs between SAP HANA and Microsoft Fabric.', 'Realicé pruebas SIT sobre la plataforma de datos maestros, validando resultados entre SAP HANA y Microsoft Fabric.'),
-        t('Supported improvements that increased the effectiveness of the planning process by 60%.', 'Apoyé mejoras que incrementaron la efectividad del proceso de planeación en un 60%.'),
+        t('Supported improvements that increased the effectiveness of the planning process by 60%.', 'Apoyo de mejoras que incrementaron la efectividad del proceso de planeación en un 60%.'),
       ],
       tech: ['SAP HANA', 'SQL', 'Microsoft Fabric', 'Data Warehousing'],
     },
@@ -183,10 +183,10 @@ const portfolioData = {
       location: t('Sydney, AU', 'Sídney, AU'),
       period: t('Aug 2025 - Nov 2025', 'Ago 2025 - Nov 2025'),
       bullets: [
-        t('Developed agentic AI solutions to automate data engineering workflows using LangChain and LangGraph.', 'Desarrollé soluciones de IA agentica para automatizar flujos de ingeniería de datos usando LangChain y LangGraph.'),
-        t('Implemented automated ingestion pipelines with DLT and transformation workflows with dbt.', 'Implementé pipelines automatizados de ingestión con DLT y flujos de transformación con dbt.'),
+        t('Developed agentic AI solutions to automate data engineering workflows using LangChain and LangGraph.', 'Desarrollo de soluciones de Agentic AI para automatizar flujos de ingeniería de datos usando LangChain y LangGraph.'),
+        t('Implemented automated ingestion pipelines with DLT and transformation workflows with dbt.', 'Implementación de pipelines automatizados de ingestión con DLT y flujos de transformación con dbt.'),
         t('Designed an AI-driven MVP for ingestion, transformation, and structuring within a medallion architecture.', 'Diseñé un MVP impulsado por IA para ingestión, transformación y estructuración dentro de una arquitectura medallion.'),
-        t('Integrated API-based data sources with Snowflake as the core data warehouse.', 'Integré fuentes de datos basadas en APIs con Snowflake como data warehouse principal.'),
+        t('Integrated API-based data sources with Snowflake as the core data warehouse.', 'Integración de fuentes de datos basadas en APIs con Snowflake como data warehouse principal.'),
       ],
       tech: ['Python', 'LangChain', 'LangGraph', 'DLT', 'dbt', 'Snowflake'],
     },
@@ -196,9 +196,9 @@ const portfolioData = {
       location: t('Remote', 'Remoto'),
       period: t('Jul 2023 - Jan 2024', 'Jul 2023 - Ene 2024'),
       bullets: [
-        t('Developed customized products in Java within the Calypso platform for specific client needs.', 'Desarrollé productos personalizados en Java dentro de la plataforma Calypso para necesidades específicas de clientes.'),
-        t('Created JUnit coverage for automated processes used in BBVA Spain Calypso implementations.', 'Creé cobertura con JUnit para procesos automatizados usados en implementaciones de Calypso para BBVA España.'),
-        t('Designed Power BI dashboards to monitor performance metrics, infrastructure load, and possible trade errors.', 'Diseñé tableros en Power BI para monitorear métricas de desempeño, carga de infraestructura y posibles errores operativos.'),
+        t('Developed customized products in Java within the Calypso platform for specific client needs.', 'Desarrollo de productos personalizados en Java dentro de la plataforma Calypso para necesidades específicas de clientes.'),
+        t('Created JUnit coverage for automated processes used in BBVA Spain Calypso implementations.', 'Creación de pruebas con JUnit para procesos automatizados usados en implementaciones de Calypso para BBVA España.'),
+        t('Designed Power BI dashboards to monitor performance metrics, infrastructure load, and possible trade errors.', 'Diseño de tableros en Power BI para monitorear métricas de desempeño, carga de infraestructura y posibles errores operativos.'),
       ],
       tech: ['Java', 'Calypso', 'JUnit', 'Power BI'],
     },
@@ -208,10 +208,10 @@ const portfolioData = {
       location: t('Remote', 'Remoto'),
       period: t('Mar 2023 - Jan 2024', 'Mar 2023 - Ene 2024'),
       bullets: [
-        t('Managed PostgreSQL, MongoDB, and HashiCorp Vault for application data and secure credential storage.', 'Administré PostgreSQL, MongoDB y HashiCorp Vault para datos de aplicación y almacenamiento seguro de credenciales.'),
-        t('Implemented CI/CD pipelines for cloud infrastructure deployment and maintenance through DigitalOcean.', 'Implementé pipelines CI/CD para despliegue y mantenimiento de infraestructura en la nube sobre DigitalOcean.'),
+        t('Managed PostgreSQL, MongoDB, and HashiCorp Vault for application data and secure credential storage.', 'Administración de PostgreSQL, MongoDB y HashiCorp Vault para datos de aplicación y almacenamiento seguro de credenciales.'),
+        t('Implemented CI/CD pipelines for cloud infrastructure deployment and maintenance through DigitalOcean.', 'Implementación pipelines CI/CD para despliegue y mantenimiento de infraestructura en la nube sobre DigitalOcean.'),
         t('Integrated AWS services including S3 and RDS into the web application infrastructure.', 'Integré servicios de AWS como S3 y RDS dentro de la infraestructura de la aplicación web.'),
-        t('Built a React frontend with Material UI and a Node.js backend with Express and JWT-based authentication.', 'Desarrollé un frontend en React con Material UI y un backend en Node.js con Express y autenticación basada en JWT.'),
+        t('Built a React frontend with Material UI and a Node.js backend with Express and JWT-based authentication.', 'Desarrollo de un frontend en React con Material UI y un backend en Node.js con Express y autenticación basada en JWT.'),
         t('Acted as project manager for the development team, ensuring delivery quality and feature completeness.', 'Actué como project manager del equipo de desarrollo, asegurando calidad de entrega y completitud funcional.'),
       ],
       tech: ['ReactJS', 'Material UI', 'Node.js', 'ExpressJS', 'PostgreSQL', 'MongoDB', 'AWS', 'DigitalOcean'],
@@ -222,9 +222,9 @@ const portfolioData = {
       location: t('Colombia', 'Colombia'),
       period: t('Aug 2022 - Jun 2023', 'Ago 2022 - Jun 2023'),
       bullets: [
-        t('Maintained CI/CD flows for enterprise applications using Docker and Jenkins.', 'Mantuve flujos CI/CD para aplicaciones empresariales usando Docker y Jenkins.'),
-        t('Administered Kubernetes clusters with k8s and Rancher.', 'Administré clústeres de Kubernetes con k8s y Rancher.'),
-        t('Developed deployment strategies for new software products.', 'Desarrollé estrategias de despliegue para nuevos productos de software.'),
+        t('Maintained CI/CD flows for enterprise applications using Docker and Jenkins.', 'Mantenimiento de flujos CI/CD para aplicaciones empresariales usando Docker y Jenkins.'),
+        t('Administered Kubernetes clusters with k8s and Rancher.', 'Administración clústeres de Kubernetes con k8s y Rancher.'),
+        t('Developed deployment strategies for new software products.', 'Desarrollo de estrategias de despliegue para nuevos productos de software.'),
         t('Partnered with internal teams to improve tooling that supported daily operational work.', 'Trabajé con equipos internos para mejorar herramientas que soportaban la operación diaria.'),
       ],
       tech: ['Docker', 'Jenkins', 'Kubernetes', 'Rancher', 'CI/CD'],
@@ -235,8 +235,8 @@ const portfolioData = {
       location: t('Colombia', 'Colombia'),
       period: t('Jun 2022 - May 2023', 'Jun 2022 - May 2023'),
       bullets: [
-        t('Managed MongoDB databases for document storage and backend workflows.', 'Administré bases de datos MongoDB para almacenamiento documental y flujos backend.'),
-        t('Integrated the Coally API with external services such as OpenAI, SendGrid, and Twilio.', 'Integré la API de Coally con servicios externos como OpenAI, SendGrid y Twilio.'),
+        t('Managed MongoDB databases for document storage and backend workflows.', 'Administración bases de datos MongoDB para almacenamiento documental y flujos backend.'),
+        t('Integrated the Coally API with external services such as OpenAI, SendGrid, and Twilio.', 'Integración de la API de Coally con servicios externos como OpenAI, SendGrid y Twilio.'),
         t('Contributed to core back-end modules built in Node.js with the Express framework.', 'Contribuí a módulos backend centrales desarrollados en Node.js con el framework Express.'),
       ],
       tech: ['Node.js', 'ExpressJS', 'MongoDB', 'OpenAI', 'SendGrid', 'Twilio'],

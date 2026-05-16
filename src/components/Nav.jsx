@@ -1,20 +1,66 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-scroll'
-import { personal } from '../data/portfolio'
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
-const navLinks = [
-  { label: 'Profile', to: 'about' },
-  { label: 'Education', to: 'education' },
-  { label: 'Experience', to: 'experience' },
-  { label: 'Projects', to: 'projects' },
-  { label: 'Stack', to: 'skills' },
-  { label: 'Contact', to: 'contact' },
-]
+function LanguageSwitch({ language, setLanguage, compact = false }) {
+  const options = [
+    { code: 'en', label: 'EN' },
+    { code: 'es', label: 'ES' },
+  ]
+
+  return (
+    <div
+      role="group"
+      aria-label="Language selector"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.2rem',
+        padding: compact ? '0.18rem' : '0.22rem',
+        borderRadius: '999px',
+        border: '1px solid rgba(255,255,255,0.08)',
+        background: 'rgba(255,255,255,0.03)',
+        backdropFilter: 'blur(14px)',
+      }}
+    >
+      {options.map(option => {
+        const active = language === option.code
+
+        return (
+          <button
+            key={option.code}
+            type="button"
+            onClick={() => setLanguage(option.code)}
+            style={{
+              border: 'none',
+              background: active ? 'var(--accent)' : 'transparent',
+              color: active ? '#fff' : '#aab1bc',
+              padding: compact ? '0.42rem 0.6rem' : '0.46rem 0.72rem',
+              borderRadius: '999px',
+              fontSize: compact ? '0.72rem' : '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.05em',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            {option.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { language, setLanguage } = useLanguage()
+  const { personal } = getPortfolioContent(language)
+  const { nav: navCopy } = getUiCopy(language)
+  const navLinks = navCopy.links
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 48)
@@ -91,7 +137,12 @@ export default function Nav() {
           ))}
         </ul>
 
-        <div className="hidden md:flex" style={{ alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}>
+          <div className="hidden sm:block">
+            <LanguageSwitch language={language} setLanguage={setLanguage} />
+          </div>
+
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: '0.75rem' }}>
           <a
             href={personal.github}
             target="_blank"
@@ -105,7 +156,7 @@ export default function Nav() {
               fontSize: '0.8rem',
             }}
           >
-            GitHub
+            {navCopy.github}
           </a>
           <a
             href={personal.cvUrl}
@@ -120,18 +171,23 @@ export default function Nav() {
               fontWeight: 600,
             }}
           >
-            Download CV
+            {navCopy.downloadCv}
           </a>
-        </div>
+          </div>
 
-        <button
-          className="lg:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          style={{ width: '2.5rem', height: '2.5rem', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.08)', background: 'transparent', color: '#fff' }}
-        >
-          {menuOpen ? '×' : '+'}
-        </button>
+          <div className="sm:hidden">
+            <LanguageSwitch language={language} setLanguage={setLanguage} compact />
+          </div>
+
+          <button
+            className="lg:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={navCopy.toggleMenu}
+            style={{ width: '2.5rem', height: '2.5rem', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.08)', background: 'transparent', color: '#fff' }}
+          >
+            {menuOpen ? '×' : '+'}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -146,6 +202,13 @@ export default function Nav() {
           >
             <div className="panel panel-strong" style={{ padding: '1rem' }}>
               <div style={{ display: 'grid', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.2rem', padding: '0.3rem 0.15rem' }}>
+                  <span style={{ color: '#7d8593', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                    {navCopy.languageLabel}
+                  </span>
+                  <LanguageSwitch language={language} setLanguage={setLanguage} />
+                </div>
+
                 {navLinks.map(link => (
                   <Link
                     key={link.to}
@@ -181,7 +244,7 @@ export default function Nav() {
                     fontWeight: 600,
                   }}
                 >
-                  Download CV
+                  {navCopy.downloadCv}
                 </a>
               </div>
             </div>

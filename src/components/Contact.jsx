@@ -1,14 +1,18 @@
 import FadeIn from './FadeIn'
-import { contact, personal } from '../data/portfolio'
-
-const links = [
-  { label: 'Email', value: personal.email, href: `mailto:${personal.email}` },
-  { label: 'LinkedIn', value: personal.linkedinLabel, href: personal.linkedin, external: true },
-  { label: 'GitHub', value: personal.githubLabel, href: personal.github, external: true },
-  { label: 'Phone', value: personal.phone, href: `tel:${personal.phone}` },
-]
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
 export default function Contact() {
+  const { language } = useLanguage()
+  const { contact, personal } = getPortfolioContent(language)
+  const { contactSection: contactCopy } = getUiCopy(language)
+  const links = [
+    { label: contactCopy.email, value: personal.email, href: `mailto:${personal.email}` },
+    { label: contactCopy.linkedIn, value: personal.linkedinLabel, href: personal.linkedin, external: true },
+    { label: contactCopy.github, value: personal.githubLabel, href: personal.github, external: true },
+    { label: contactCopy.phone, value: personal.phone, href: `tel:${personal.phone}` },
+  ]
+
   return (
     <section id="contact" style={{ padding: '5rem 0 3.5rem' }}>
       <div className="section-wrap">
@@ -31,9 +35,9 @@ export default function Contact() {
 
             <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-5 relative z-10">
               <div>
-                <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>Contact</p>
+                <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>{contactCopy.eyebrow}</p>
                 <h2 className="section-title" style={{ marginBottom: '1rem' }}>
-                  Open to the next <span style={{ color: 'var(--accent)' }}>data, AI, or consulting challenge</span>
+                  {contactCopy.title} <span style={{ color: 'var(--accent)' }}>{contactCopy.titleAccent}</span>
                 </h2>
                 <p className="section-copy" style={{ color: '#d0d6df', marginBottom: '1.5rem' }}>
                   {contact.blurb}
@@ -77,7 +81,7 @@ export default function Contact() {
                       fontWeight: 600,
                     }}
                   >
-                    Download CV
+                    {contactCopy.downloadCv}
                   </a>
                   <a
                     href={personal.linkedin}
@@ -91,7 +95,7 @@ export default function Contact() {
                       textDecoration: 'none',
                     }}
                   >
-                    Message on LinkedIn
+                    {contactCopy.messageLinkedIn}
                   </a>
                 </div>
               </div>
@@ -114,12 +118,12 @@ export default function Contact() {
 
                 <div className="grid gap-4">
                   <div className="panel" style={{ padding: '1.35rem' }}>
-                    <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>Availability</p>
+                    <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>{contactCopy.availabilityEyebrow}</p>
                     <p className="font-display" style={{ color: '#fff', fontSize: '1.4rem', lineHeight: 1.1, marginBottom: '0.5rem' }}>
                       {personal.availability}
                     </p>
                     <p style={{ color: '#9aa1af', lineHeight: 1.7, fontSize: '0.9rem' }}>
-                      Based in Melbourne and open to opportunities across Melbourne, Sydney, or remote-first teams.
+                      {contactCopy.availabilityBody}
                     </p>
                   </div>
 
@@ -129,10 +133,10 @@ export default function Contact() {
                       {contact.cvSubtitle}
                     </p>
                     <p style={{ color: '#9aa1af', lineHeight: 1.7, fontSize: '0.9rem', marginBottom: '1rem' }}>
-                      A full export is available if you want the detailed version of experience, education, and project context.
+                      {contactCopy.cvBody}
                     </p>
                     <a href={personal.cvUrl} download style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>
-                      {'Download the PDF ->'}
+                      {contactCopy.downloadPdf}
                     </a>
                   </div>
                 </div>

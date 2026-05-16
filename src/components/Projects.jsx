@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
 import FadeIn from './FadeIn'
-import { projects } from '../data/portfolio'
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
-function ProjectLink({ href, label, color }) {
+function ProjectLink({ href, label, color, fallbackLabel }) {
   if (!href) {
     return (
       <span style={{ color: '#6b7280', fontSize: '0.8rem' }}>
-        Link coming later
+        {fallbackLabel}
       </span>
     )
   }
@@ -18,12 +19,15 @@ function ProjectLink({ href, label, color }) {
       rel="noreferrer"
       style={{ color, textDecoration: 'none', fontSize: '0.84rem', fontWeight: 600 }}
     >
-      {label || 'Open project ->'}
+      {label || fallbackLabel}
     </a>
   )
 }
 
 export default function Projects() {
+  const { language } = useLanguage()
+  const { projects } = getPortfolioContent(language)
+  const { projectsSection: projectsCopy } = getUiCopy(language)
   const [featured, ...rest] = projects
 
   return (
@@ -32,13 +36,13 @@ export default function Projects() {
         <FadeIn>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4" style={{ marginBottom: '2rem' }}>
             <div>
-              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>Projects</p>
+              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>{projectsCopy.eyebrow}</p>
               <h2 className="section-title">
-                Selected builds across <span style={{ color: 'var(--accent)' }}>AI, data engineering, and applied ML</span>
+                {projectsCopy.title} <span style={{ color: 'var(--accent)' }}>{projectsCopy.titleAccent}</span>
               </h2>
             </div>
             <p className="section-copy" style={{ maxWidth: '23rem' }}>
-              These projects show how I apply data engineering, machine learning, and AI tooling to real delivery problems, from automation workflows to predictive platforms.
+              {projectsCopy.intro}
             </p>
           </div>
         </FadeIn>
@@ -59,9 +63,9 @@ export default function Projects() {
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap' }}>
                     <span style={{ padding: '0.38rem 0.8rem', borderRadius: '999px', background: `${featured.color}16`, border: `1px solid ${featured.color}30`, color: featured.color, fontSize: '0.75rem' }}>
-                      Featured project
+                      {projectsCopy.featuredProject}
                     </span>
-                    <ProjectLink href={featured.link} label={featured.linkLabel} color={featured.color} />
+                    <ProjectLink href={featured.link} label={featured.linkLabel} color={featured.color} fallbackLabel={projectsCopy.openProject} />
                   </div>
 
                   <p style={{ color: '#cdd3dc', fontSize: '0.82rem', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
@@ -105,7 +109,7 @@ export default function Projects() {
                     <span style={{ color: project.color, fontSize: '0.76rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       {project.category}
                     </span>
-                    <ProjectLink href={project.link} label={project.linkLabel} color={project.color} />
+                    <ProjectLink href={project.link} label={project.linkLabel} color={project.color} fallbackLabel={projectsCopy.linkComingLater} />
                   </div>
 
                   <h3 className="font-display" style={{ color: '#fff', fontSize: '1.35rem', lineHeight: 1.15, marginBottom: '0.75rem' }}>

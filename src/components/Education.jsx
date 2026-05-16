@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FadeIn from './FadeIn'
-import { education } from '../data/portfolio'
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
 function InstitutionLogo({ domain, name, color }) {
   const [failed, setFailed] = useState(false)
@@ -37,18 +38,22 @@ function InstitutionLogo({ domain, name, color }) {
 }
 
 export default function Education() {
+  const { language } = useLanguage()
+  const { education } = getPortfolioContent(language)
+  const { educationSection: educationCopy } = getUiCopy(language)
+
   return (
     <section id="education" style={{ padding: '1rem 0 5rem' }}>
       <div className="section-wrap">
         <div className="grid xl:grid-cols-[0.42fr_0.58fr] gap-5 items-stretch">
           <FadeIn className="h-full">
             <div className="panel panel-strong xl:sticky top-28" style={{ padding: '2rem', height: '100%' }}>
-              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>Education</p>
+              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>{educationCopy.eyebrow}</p>
               <h2 className="section-title" style={{ marginBottom: '1rem' }}>
-                Academic grounding with <span style={{ color: 'var(--accent)' }}>strong practical direction</span>
+                {educationCopy.title} <span style={{ color: 'var(--accent)' }}>{educationCopy.titleAccent}</span>
               </h2>
               <p className="section-copy" style={{ marginBottom: '1.8rem' }}>
-                Formal study sharpened the engineering, analytics, and AI work already present in my project experience.
+                {educationCopy.intro}
               </p>
             </div>
           </FadeIn>
@@ -90,7 +95,7 @@ export default function Education() {
                         </span>
                         <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', width: '100%' }} />
                         <a href={entry.url} target="_blank" rel="noreferrer" style={{ color: '#d8dde5', textDecoration: 'none', fontSize: '0.84rem', fontWeight: 500, justifySelf: 'start' }}>
-                          {'Visit institution ->'}
+                          {educationCopy.visitInstitution}
                         </a>
                       </div>
                     </div>

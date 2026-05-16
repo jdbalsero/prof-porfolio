@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
-import { personal, education } from '../data/portfolio'
-
-const heroPoints = [
-  'Data engineering and warehouse automation',
-  'Applied AI workflows with business delivery focus',
-  'Software consulting across backend, BI, and DevOps',
-]
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
 export default function Hero() {
+  const { language } = useLanguage()
+  const { personal, education } = getPortfolioContent(language)
+  const { hero: heroCopy } = getUiCopy(language)
   const latestEducation = education[0]
 
   return (
@@ -45,7 +43,7 @@ export default function Hero() {
             <div className="panel panel-strong" style={{ padding: 'clamp(1.5rem, 4vw, 3rem)' }}>
               <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', marginBottom: '1.25rem' }}>
-                  <span className="section-eyebrow">Melbourne-based Portfolio</span>
+                  <span className="section-eyebrow">{heroCopy.eyebrow}</span>
                   <span style={{ width: '0.35rem', height: '0.35rem', borderRadius: '50%', background: 'var(--accent)' }} />
                   <span style={{ color: '#d1d5db', fontSize: '0.82rem' }}>{personal.availability}</span>
                 </div>
@@ -65,7 +63,7 @@ export default function Hero() {
                 </p>
 
                 <div className="grid sm:grid-cols-3 gap-3" style={{ marginBottom: '2rem' }}>
-                  {heroPoints.map(point => (
+                  {heroCopy.points.map(point => (
                     <div
                       key={point}
                       style={{
@@ -96,7 +94,7 @@ export default function Hero() {
                         cursor: 'pointer',
                       }}
                     >
-                      Explore Projects
+                      {heroCopy.exploreProjects}
                     </button>
                   </Link>
                   <Link to="experience" smooth duration={650} offset={-88}>
@@ -111,7 +109,7 @@ export default function Hero() {
                         cursor: 'pointer',
                       }}
                     >
-                      View Experience
+                      {heroCopy.viewExperience}
                     </button>
                   </Link>
                 </div>
@@ -162,7 +160,7 @@ export default function Hero() {
                   <div style={{ position: 'relative', zIndex: 2, padding: '1.35rem', minHeight: '430px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                       <span style={{ padding: '0.45rem 0.8rem', borderRadius: '999px', background: 'rgba(8,8,8,0.55)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff', fontSize: '0.75rem' }}>
-                        Currently in {personal.location}
+                        {heroCopy.currentIn} {personal.location}
                       </span>
                       <span style={{ width: '2.2rem', height: '2.2rem', borderRadius: '999px', background: 'rgba(8,8,8,0.55)', display: 'grid', placeItems: 'center', color: 'var(--accent)', border: '1px solid rgba(255,255,255,0.08)' }}>
                         JB
@@ -171,13 +169,13 @@ export default function Hero() {
 
                     <div>
                       <p style={{ color: '#dfe5ec', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '0.65rem' }}>
-                        Current Focus
+                        {heroCopy.currentFocus}
                       </p>
                       <p className="font-display" style={{ color: '#fff', fontSize: '1.65rem', lineHeight: 1.1, marginBottom: '0.8rem' }}>
-                        Building reliable data systems with practical AI.
+                        {heroCopy.currentFocusTitle}
                       </p>
                       <p style={{ color: '#d1d5db', lineHeight: 1.7, fontSize: '0.94rem' }}>
-                        I’m interested in roles where data pipelines, analytics products, and automation can create clear operational value.
+                        {heroCopy.currentFocusBody}
                       </p>
                     </div>
                   </div>
@@ -186,7 +184,7 @@ export default function Hero() {
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-5">
                 <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.14 }} className="panel" style={{ padding: '1.35rem' }}>
-                  <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>Latest Degree</p>
+                  <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>{heroCopy.latestDegree}</p>
                   <p className="font-display" style={{ color: '#fff', fontSize: '1.2rem', lineHeight: 1.2, marginBottom: '0.45rem' }}>
                     {latestEducation.degree}
                   </p>
@@ -195,7 +193,7 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="panel" style={{ padding: '1.35rem' }}>
-                  <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>Reach Out</p>
+                  <p className="section-eyebrow" style={{ marginBottom: '0.8rem' }}>{heroCopy.reachOut}</p>
                   <div style={{ display: 'grid', gap: '0.7rem' }}>
                     <a href={`mailto:${personal.email}`} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.93rem' }}>{personal.email}</a>
                     <a href={personal.linkedin} target="_blank" rel="noreferrer" style={{ color: '#c4cad3', textDecoration: 'none', fontSize: '0.9rem' }}>{personal.linkedinLabel}</a>

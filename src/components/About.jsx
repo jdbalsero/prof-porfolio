@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion'
 import FadeIn from './FadeIn'
-import { about, journey } from '../data/portfolio'
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
 export default function About() {
+  const { language } = useLanguage()
+  const { about, journey } = getPortfolioContent(language)
+  const { aboutSection: aboutCopy } = getUiCopy(language)
+
   return (
     <section id="about" style={{ padding: '2rem 0 5rem', position: 'relative' }}>
       <div className="section-wrap">
@@ -28,25 +33,25 @@ export default function About() {
                 }}
               />
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>Profile Narrative</p>
+                <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>{aboutCopy.narrativeEyebrow}</p>
                 <h2 className="section-title" style={{ marginBottom: '1.2rem' }}>
-                  From delivery foundations into <span style={{ color: 'var(--accent)' }}>data and AI systems</span>
+                  {aboutCopy.title} <span style={{ color: 'var(--accent)' }}>{aboutCopy.titleAccent}</span>
                 </h2>
                 <p className="section-copy" style={{ fontSize: '1rem', marginBottom: '1.1rem', color: '#d4d9e0' }}>
                   {about.intro}
                 </p>
                 <p className="section-copy" style={{ marginBottom: '2rem' }}>
-                  That path shapes how I work today: I’m comfortable moving between business needs, implementation details, data models, application logic, and deployment concerns without losing sight of the outcome.
+                  {aboutCopy.outro}
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div style={{ padding: '1rem', borderRadius: '1.2rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p className="section-eyebrow" style={{ marginBottom: '0.55rem' }}>What I Bring</p>
-                    <p style={{ color: '#fff', lineHeight: 1.65 }}>Engineering discipline, consulting pragmatism, and analytical thinking across the full data lifecycle.</p>
+                    <p className="section-eyebrow" style={{ marginBottom: '0.55rem' }}>{aboutCopy.bringTitle}</p>
+                    <p style={{ color: '#fff', lineHeight: 1.65 }}>{aboutCopy.bringBody}</p>
                   </div>
                   <div style={{ padding: '1rem', borderRadius: '1.2rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p className="section-eyebrow" style={{ marginBottom: '0.55rem' }}>Working Style</p>
-                    <p style={{ color: '#fff', lineHeight: 1.65 }}>Hands-on, delivery-oriented, and comfortable collaborating across technical and business stakeholders.</p>
+                    <p className="section-eyebrow" style={{ marginBottom: '0.55rem' }}>{aboutCopy.workingStyleTitle}</p>
+                    <p style={{ color: '#fff', lineHeight: 1.65 }}>{aboutCopy.workingStyleBody}</p>
                   </div>
                 </div>
               </div>
@@ -58,13 +63,13 @@ export default function About() {
               <div className="panel" style={{ padding: '2rem', height: '100%' }}>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4" style={{ marginBottom: '1.7rem' }}>
                   <div>
-                    <p className="section-eyebrow" style={{ marginBottom: '0.9rem' }}>Career Route</p>
+                    <p className="section-eyebrow" style={{ marginBottom: '0.9rem' }}>{aboutCopy.careerEyebrow}</p>
                     <h3 className="font-display" style={{ color: '#fff', fontSize: '2rem', lineHeight: 1 }}>
-                      A path across backend, DevOps, consulting, BI, and AI.
+                      {aboutCopy.careerTitle}
                     </h3>
                   </div>
                   <p style={{ color: '#7b8190', maxWidth: '20rem', lineHeight: 1.65 }}>
-                    The sequence matters because each step added a new operating layer to how I solve problems.
+                    {aboutCopy.careerBody}
                   </p>
                 </div>
 

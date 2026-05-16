@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import FadeIn from './FadeIn'
 import TechBadge from './TechBadge'
-import { experience } from '../data/portfolio'
+import { getPortfolioContent, getUiCopy } from '../data/portfolio'
+import { useLanguage } from './LanguageProvider'
 
 const companyInfo = {
   Synogize: { domain: 'synogize.io', url: 'https://synogize.io', color: '#FF5555' },
@@ -74,6 +75,9 @@ function ToggleIcon({ open }) {
 
 export default function Experience() {
   const [openIndex, setOpenIndex] = useState(0)
+  const { language } = useLanguage()
+  const { experience } = getPortfolioContent(language)
+  const { experienceSection: experienceCopy } = getUiCopy(language)
 
   return (
     <section id="experience" style={{ padding: '5rem 0' }}>
@@ -81,26 +85,26 @@ export default function Experience() {
         <div className="grid xl:grid-cols-[0.45fr_0.55fr] gap-5 items-start">
           <FadeIn>
             <div className="panel panel-strong xl:sticky top-28" style={{ padding: '2rem' }}>
-              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>Experience</p>
+              <p className="section-eyebrow" style={{ marginBottom: '1rem' }}>{experienceCopy.eyebrow}</p>
               <h2 className="section-title" style={{ marginBottom: '1rem' }}>
-                A consulting-led <span style={{ color: 'var(--accent)' }}>career timeline</span>
+                {experienceCopy.title} <span style={{ color: 'var(--accent)' }}>{experienceCopy.titleAccent}</span>
               </h2>
               <p className="section-copy" style={{ marginBottom: '1.8rem' }}>
-                My experience spans backend delivery, infrastructure, full-stack work, reporting, AI experimentation, and hands-on data engineering. That breadth is part of the value I bring.
+                {experienceCopy.intro}
               </p>
 
               <div className="grid sm:grid-cols-3 xl:grid-cols-1 gap-3">
                 <div style={{ padding: '1rem', borderRadius: '1.1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
                   <p className="font-display" style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '0.25rem' }}>{experience.length}</p>
-                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>Professional roles captured in the portfolio</p>
+                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>{experienceCopy.rolesCount}</p>
                 </div>
                 <div style={{ padding: '1rem', borderRadius: '1.1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="font-display" style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '0.25rem' }}>Data + Delivery</p>
-                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>Built across product, platform, analytics, and automation contexts</p>
+                  <p className="font-display" style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '0.25rem' }}>{experienceCopy.dataDeliveryTitle}</p>
+                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>{experienceCopy.dataDeliveryBody}</p>
                 </div>
                 <div style={{ padding: '1rem', borderRadius: '1.1rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p className="font-display" style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '0.25rem' }}>AU + Remote</p>
-                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>Experience working across distributed and consulting environments</p>
+                  <p className="font-display" style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '0.25rem' }}>{experienceCopy.remoteTitle}</p>
+                  <p style={{ color: '#7b8190', fontSize: '0.76rem' }}>{experienceCopy.remoteBody}</p>
                 </div>
               </div>
             </div>
